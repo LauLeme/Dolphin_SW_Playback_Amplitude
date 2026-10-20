@@ -163,7 +163,7 @@ anova(glm2.6_RD, glm2.7_RD, test = "Chisq") # interaction Group_size * Stimulus_
 anova(glm2.6_RD, glm3.7_RD, test = "Chisq") # + Sex
 anova(glm2.6_RD, glm3.8_RD, test = "Chisq") # + Sex, interaction with Group_size
 anova(glm2.6_RD, glm3.9_RD, test = "Chisq") # + Age
-anova(glm2.6_RD, glm3.10_RD, test = "Chisq") # + Age, interaction with Group_size
+anova(glm2.6_RD, glm3.10_RD, test = "Chisq") # * Age, interaction with Group_size
 anova(glm2.6_RD, glm3.11_RD, test = "Chisq") # + Mean RL
 
 # ---------- From Group_size + Stimulus_type + Mean RL ----------
@@ -171,23 +171,23 @@ anova(glm3.11_RD, glm3.12_RD, test = "Chisq") # interaction Group_size * Stimulu
 
 # ---------- From Mean RL + Sex ----------
 anova(glm2.1_RD, glm3.1_RD, test = "Chisq") # + Stimulus_type
-anova(glm2.1_RD, glm3.2_RD, test = "Chisq") # + Stimulus_type, interaction with Sex
+anova(glm2.1_RD, glm3.2_RD, test = "Chisq") # * Stimulus_type, interaction with Sex
 anova(glm2.1_RD, glm3.3_RD, test = "Chisq") # + Age
 anova(glm2.1_RD, glm3.4_RD, test = "Chisq") # + Group_size
-anova(glm2.1_RD, glm3.5_RD, test = "Chisq") # + Group_size, interaction with Sex
-anova(glm2.1_RD, glm3.6_RD, test = "Chisq") # + Age, interaction with Sex
+anova(glm2.1_RD, glm3.5_RD, test = "Chisq") # * Group_size, interaction with Sex
+anova(glm2.1_RD, glm3.6_RD, test = "Chisq") # * Age, interaction with Sex
 
 # ---------- From Mean RL + Sex + Stimulus_type ----------
 anova(glm3.1_RD, glm3.2_RD, test = "Chisq") # interaction Sex * Stimulus_type instead
 anova(glm3.1_RD, glm4.1_RD, test = "Chisq") # + Age
-anova(glm3.1_RD, glm4.2_RD, test = "Chisq") # + Age, interaction with Stimulus_type
+anova(glm3.1_RD, glm4.2_RD, test = "Chisq") # * Age, interaction with Stimulus_type
 anova(glm3.1_RD, glm4.5_RD, test = "Chisq") # + Group_size
-anova(glm3.1_RD, glm4.6_RD, test = "Chisq") # + Group_size, interaction with Stimulus_type
+anova(glm3.1_RD, glm4.6_RD, test = "Chisq") # * Group_size, interaction with Stimulus_type
 
 # ---------- Best compromise among the shortlisted models ----------
-AIC(glm1.1_RD, glm2.1_RD, glm3.1_RD, glm2.6_RD, glm1.3_RD, glm3.11_RD) %>% arrange(AIC)
-BIC(glm1.1_RD, glm2.1_RD, glm3.1_RD, glm2.6_RD, glm1.3_RD, glm3.11_RD) %>% arrange(BIC)
-AICc(glm1.1_RD, glm2.1_RD, glm3.1_RD, glm2.6_RD, glm1.3_RD, glm3.11_RD) %>% arrange(AICc)
+AIC(glm1.1_RD, glm1.3_RD, glm2.1_RD, glm3.1_RD, glm2.6_RD, glm2.7_RD, glm3.11_RD) %>% arrange(AIC)
+BIC(glm1.1_RD, glm1.3_RD, glm2.1_RD, glm3.1_RD, glm2.6_RD, glm2.7_RD, glm3.11_RD) %>% arrange(BIC)
+AICc(glm1.1_RD, glm1.3_RD, glm2.1_RD, glm3.1_RD, glm2.6_RD, glm2.7_RD, glm3.11_RD) %>% arrange(AICc)
 
 
 # =====================================================================
@@ -220,3 +220,34 @@ data_ODBA %>%
             max = max(resp_dur))
 
 
+# =====================================================================
+# 8. FIGURE 2B - RESPONSE DURATION
+# =====================================================================
+data_ODBA %>% 
+  ggplot(aes(x = Mean_RL, y = resp_dur, shape = Group_size, color = Stimulus_type)) +
+  geom_point(aes(shape=Group_size), size = 3) +
+  geom_smooth(method = "glm",
+              method.args = list(family = MASS::negative.binomial(theta = 1.184)), # theta from glm3.11_RD
+              se = TRUE,
+              aes(group = 1), # for 1 global glm
+              color = "gray40") +
+  labs(x = "Mean received level (dB re 1 µPa)",
+       y = "Response duration (s)",
+       color = "Stimulus type",
+       shape = "Number of individuals",
+       caption = "n = 40 trials; 23 individuals")+ 
+  scale_color_manual(values = c("Familiar"="goldenrod2", "Unfamiliar"="darkorchid3")) +
+  scale_shape_manual(values = c(1, 16),
+                     labels = c("1" = "Single", "2" = "Pair"),
+                     name = "Group size") +
+  guides(color = guide_legend(order = 1, # Stimulus_type above
+                              override.aes = list(shape = 8, # shape 
+                                                  linetype = 0,
+                                                  size = 2)),
+         shape = guide_legend(order = 2)) +   # Group_size under
+  # Remove the point for the sex on the legend
+  theme_bw() +
+  theme(plot.title = element_text(face = "bold"),
+        plot.subtitle = element_text(color = "gray50"),
+        axis.title = element_text(face = "bold"),
+        legend.title = element_text(face = "bold"))

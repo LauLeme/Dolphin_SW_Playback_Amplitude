@@ -234,7 +234,7 @@ data_ODBA %>%
             max = max(relative_ODBA_change))
 
 # =====================================================================
-# 8. FIGURE 2A
+# 8. FIGURE 2A - RELATIVE CHANGE OF ODBA
 # =====================================================================
 data_ODBA %>% 
   ggplot(aes(x=Mean_RL, y = relative_ODBA_change, color = Sex)) +
