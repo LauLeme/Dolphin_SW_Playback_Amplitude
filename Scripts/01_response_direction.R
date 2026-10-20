@@ -273,3 +273,43 @@ ft
 # officer::read_docx() %>%
 #   body_add_flextable(ft) %>%
 #   print(target = "emmeans_Tukey_all_comparisons.docx")
+
+
+# =====================================================================
+# 8. Figure 1 - Proportion of responses
+# =====================================================================
+data_resp_dir %>%
+  
+  # ----- Compute descriptive statistics ------
+  group_by(Sex, SL, Stimulus_type) %>%
+  summarise(n_total = n(),
+            n_toward = sum(Response_direction == "Toward"),
+            n_away = sum(Response_direction == "Away"),
+            prop_toward = n_toward / n_total,
+            prop_away = n_away / n_total,
+            .groups = "drop") %>%
+  
+  # ----- Transform into longer table ------
+  pivot_longer(cols = c(prop_toward, prop_away),
+               names_to = "Response",
+               values_to = "Proportion") %>%
+  mutate(n_label = case_when(Response == "prop_toward" ~ n_away,
+                             Response == "prop_away" ~ n_away)) %>% 
+  
+  # ------ Plot ------
+  ggplot(aes(x = SL, y = Proportion, fill = Response)) +
+  geom_col(position = position_dodge(width = 0.9)) +
+  geom_text(aes(label = n_label, y = Proportion),
+            position = position_dodge(width = 0.9),
+            vjust = -0.3, size = 3) +
+  facet_grid(Sex ~ Stimulus_type) +   # row: Sex; column: Stimulus_type
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1),
+                     expand = expansion(mult = c(0, 0.15))) +
+  scale_fill_manual(values = c("prop_away" = "#FFD700",
+                               "prop_toward" = "#0072B2")) +
+  theme_bw() +
+  theme(strip.background = element_rect(fill = "grey80", color = "grey90"),
+        strip.text = element_text(face = "bold")) +
+  labs(x = "Source level", y = "Proportion of responses", fill = "First direction\nof response",
+       caption = paste0("n = ", sum(Response_Demo_test$Response_direction %in% c("Toward","Away")), " trials; ",
+                        length(unique(Response_Demo_test$Focal_FB_ID)), " individuals"))
