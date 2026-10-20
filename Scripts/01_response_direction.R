@@ -6,6 +6,7 @@
 #   playbacks depend on source level (SL) and/or individual characteristics?
 #
 # --- DATA ---
+#   data_resp_dir
 #   full dataset, 125 trials on 70 individuals
 #   (first response from drone video or dead-reckoned tracks).
 #   Trials without response are excluded (n = 10).
@@ -311,5 +312,5 @@ data_resp_dir %>%
   theme(strip.background = element_rect(fill = "grey80", color = "grey90"),
         strip.text = element_text(face = "bold")) +
   labs(x = "Source level", y = "Proportion of responses", fill = "First direction\nof response",
-       caption = paste0("n = ", sum(Response_Demo_test$Response_direction %in% c("Toward","Away")), " trials; ",
-                        length(unique(Response_Demo_test$Focal_FB_ID)), " individuals"))
+       caption = paste0("n = ", sum(data_resp_dir$Response_direction %in% c("Toward","Away")), " trials; ",
+                        length(unique(data_resp_dir$Focal_FB_ID)), " individuals"))

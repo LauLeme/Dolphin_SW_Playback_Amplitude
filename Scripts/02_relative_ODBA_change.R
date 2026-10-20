@@ -96,18 +96,19 @@ glm0_RCodba    <- glm(relative_ODBA_change ~ 1, data = data_ODBA, family = gauss
 glm1.1_RCodba  <- glm(relative_ODBA_change ~ Mean_RL, data = data_ODBA, family = gaussian())
 glm1.2_RCodba  <- glm(relative_ODBA_change ~ Sex, data = data_ODBA, family = gaussian())
 glm1.3_RCodba  <- glm(relative_ODBA_change ~ Age, data = data_ODBA, family = gaussian())
-glm1.4_RCodba  <- glm(relative_ODBA_change ~ Status, data = data_ODBA, family = gaussian())
-glm1.5_RCodba  <- glm(relative_ODBA_change ~ Group_size, data = data_ODBA, family = gaussian())
-glm1.6_RCodba  <- glm(relative_ODBA_change ~ Stimulus_type, data = data_ODBA, family = gaussian())
+glm1.4_RCodba  <- glm(relative_ODBA_change ~ Group_size, data = data_ODBA, family = gaussian())
+glm1.5_RCodba  <- glm(relative_ODBA_change ~ Stimulus_type, data = data_ODBA, family = gaussian())
 
 # ---------- 2 variables ----------
 glm2.1_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Sex, data = data_ODBA, family = gaussian())  
 glm2.2_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Age, data = data_ODBA, family = gaussian())
-glm2.3_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Status, data = data_ODBA, family = gaussian())
-glm2.4_RCodba  <- glm(relative_ODBA_change ~ Mean_RL * Sex, data = data_ODBA, family = gaussian())
-glm2.5_RCodba  <- glm(relative_ODBA_change ~ Sex + Group_size, data = data_ODBA, family = gaussian())
-glm2.6_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Group_size, data = data_ODBA, family = gaussian())
-glm2.7_RCodba  <- glm(relative_ODBA_change ~ Sex * Group_size, data = data_ODBA, family = gaussian())
+glm2.3_RCodba  <- glm(relative_ODBA_change ~ Mean_RL * Sex, data = data_ODBA, family = gaussian())
+glm2.4_RCodba  <- glm(relative_ODBA_change ~ Sex + Group_size, data = data_ODBA, family = gaussian())
+glm2.5_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Group_size, data = data_ODBA, family = gaussian())
+glm2.6_RCodba  <- glm(relative_ODBA_change ~ Sex * Group_size, data = data_ODBA, family = gaussian())
+glm2.7_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Stimulus_type, data = data_ODBA, family = gaussian())  
+glm2.8_RCodba  <- glm(relative_ODBA_change ~ Sex + Stimulus_type, data = data_ODBA, family = gaussian())  
+glm2.9_RCodba  <- glm(relative_ODBA_change ~ Group_size + Stimulus_type, data = data_ODBA, family = gaussian())  
 
 # ---------- 3 variables ----------
 glm3.1_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Sex + Group_size, data = data_ODBA, family = gaussian())
@@ -115,26 +116,19 @@ glm3.2_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Sex * Group_size, data = 
 glm3.3_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Sex + Stimulus_type, data = data_ODBA, family = gaussian())
 glm3.4_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Sex + Age, data = data_ODBA, family = gaussian())
 glm3.5_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Sex * Age, data = data_ODBA, family = gaussian())
-glm3.6_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Sex + Status, data = data_ODBA, family = gaussian())
-glm3.7_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Sex * Status, data = data_ODBA, family = gaussian())
-glm3.8_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Sex * Stimulus_type, data = data_ODBA, family = gaussian())
-glm3.9_RCodba  <- glm(relative_ODBA_change ~ Mean_RLrms * PB_Type_FU + Sex, data = ODBA_PB, family = gaussian())
-glm3.10_RCodba <- glm(relative_ODBA_change ~ Mean_RLrms * Sex + Nb_Ind, data = ODBA_PB, family = gaussian())
+glm3.6_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Sex * Stimulus_type, data = data_ODBA, family = gaussian())
+glm3.7_RCodba  <- glm(relative_ODBA_change ~ Mean_RL * Stimulus_type + Sex, data = data_ODBA, family = gaussian())
+glm3.8_RCodba <- glm(relative_ODBA_change ~ Mean_RL * Sex + Group_size, data = data_ODBA, family = gaussian())
+glm3.9_RCodba <- glm(relative_ODBA_change ~ Mean_RL * Sex + Stimulus_type, data = data_ODBA, family = gaussian())
 
 # ---------- 4 variables ----------
-glm4.1_RCodba  <- glm(relative_ODBA_change ~ Mean_RLrms + Sex + Nb_Ind * PB_Type_FU, data = ODBA_PB, family = gaussian())
-glm4.2_RCodba  <- glm(relative_ODBA_change ~ Mean_RLrms + Sex + Nb_Ind * Age, data = ODBA_PB, family = gaussian())
-glm4.3_RCodba  <- glm(relative_ODBA_change ~ Mean_RLrms + Sex + Nb_Ind + Age, data = ODBA_PB, family = gaussian())
-glm4.4_RCodba  <- glm(relative_ODBA_change ~ Mean_RLrms + Sex * Nb_Ind + Age, data = ODBA_PB, family = gaussian())
-glm4.5_RCodba  <- glm(relative_ODBA_change ~ Mean_RLrms + Sex + Nb_Ind * Status, data = ODBA_PB, family = gaussian())
-glm4.6_RCodba  <- glm(relative_ODBA_change ~ Mean_RLrms + Sex + Nb_Ind + Status, data = ODBA_PB, family = gaussian())
-glm4.7_RCodba  <- glm(relative_ODBA_change ~ Mean_RLrms + Sex * Nb_Ind + Status, data = ODBA_PB, family = gaussian())
-glm4.8_RCodba  <- glm(relative_ODBA_change ~ Mean_RLrms + Sex + Age + PB_Type_FU, data = ODBA_PB, family = gaussian())
-glm4.9_RCodba  <- glm(relative_ODBA_change ~ Mean_RLrms + Sex + Status + PB_Type_FU, data = ODBA_PB, family = gaussian())
-glm4.10_RCodba <- glm(relative_ODBA_change ~ Mean_RLrms * Sex + Age + PB_Type_FU, data = ODBA_PB, family = gaussian())
-glm4.11_RCodba <- glm(relative_ODBA_change ~ Mean_RLrms * Sex + Status + PB_Type_FU, data = ODBA_PB, family = gaussian())
-glm4.12_RCodba <- glm(relative_ODBA_change ~ Mean_RLrms * Age + Sex + PB_Type_FU, data = ODBA_PB, family = gaussian())
-glm4.13_RCodba <- glm(relative_ODBA_change ~ Mean_RLrms * Status + Sex + PB_Type_FU, data = ODBA_PB, family = gaussian())
+glm4.1_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Sex + Group_size * Stimulus_type, data = data_ODBA, family = gaussian())
+glm4.2_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Sex + Group_size * Age, data = data_ODBA, family = gaussian())
+glm4.3_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Sex + Group_size + Age, data = data_ODBA, family = gaussian())
+glm4.4_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Sex * Group_size + Age, data = data_ODBA, family = gaussian())
+glm4.5_RCodba  <- glm(relative_ODBA_change ~ Mean_RL + Sex + Age + Stimulus_type, data = data_ODBA, family = gaussian())
+glm4.6_RCodba <- glm(relative_ODBA_change ~ Mean_RL * Sex + Age + Stimulus_type, data = data_ODBA, family = gaussian())
+glm4.7_RCodba <- glm(relative_ODBA_change ~ Mean_RL * Age + Sex + Stimulus_type, data = data_ODBA, family = gaussian())
 
 
 # =====================================================================
@@ -142,35 +136,35 @@ glm4.13_RCodba <- glm(relative_ODBA_change ~ Mean_RLrms * Status + Sex + PB_Type
 # =====================================================================
 # ---------- AIC ----------
 AIC(glmfull_RCodba, glm0_RCodba,
-    glm1.1_RCodba, glm1.2_RCodba, glm1.3_RCodba, glm1.4_RCodba, glm1.5_RCodba, glm1.6_RCodba,
-    glm2.1_RCodba, glm2.2_RCodba, glm2.3_RCodba, glm2.4_RCodba, glm2.5_RCodba, glm2.6_RCodba, glm2.7_RCodba,
+    glm1.1_RCodba, glm1.2_RCodba, glm1.3_RCodba, glm1.4_RCodba, glm1.5_RCodba,
+    glm2.1_RCodba, glm2.2_RCodba, glm2.3_RCodba, glm2.4_RCodba, glm2.5_RCodba, glm2.6_RCodba,
+    glm2.7_RCodba, glm2.8_RCodba, glm2.9_RCodba,
     glm3.1_RCodba, glm3.2_RCodba, glm3.3_RCodba, glm3.4_RCodba, glm3.5_RCodba, glm3.6_RCodba,
-    glm3.7_RCodba, glm3.8_RCodba, glm3.9_RCodba, glm3.10_RCodba,
+    glm3.7_RCodba, glm3.8_RCodba, glm3.9_RCodba,
     glm4.1_RCodba, glm4.2_RCodba, glm4.3_RCodba, glm4.4_RCodba, glm4.5_RCodba, glm4.6_RCodba,
-    glm4.7_RCodba, glm4.8_RCodba, glm4.9_RCodba, glm4.10_RCodba, glm4.11_RCodba, glm4.12_RCodba,
-    glm4.13_RCodba) %>%
+    glm4.7_RCodba) %>%
   arrange(AIC)
 
 # ---------- BIC ----------
 BIC(glmfull_RCodba, glm0_RCodba,
-    glm1.1_RCodba, glm1.2_RCodba, glm1.3_RCodba, glm1.4_RCodba, glm1.5_RCodba, glm1.6_RCodba,
-    glm2.1_RCodba, glm2.2_RCodba, glm2.3_RCodba, glm2.4_RCodba, glm2.5_RCodba, glm2.6_RCodba, glm2.7_RCodba,
+    glm1.1_RCodba, glm1.2_RCodba, glm1.3_RCodba, glm1.4_RCodba, glm1.5_RCodba,
+    glm2.1_RCodba, glm2.2_RCodba, glm2.3_RCodba, glm2.4_RCodba, glm2.5_RCodba, glm2.6_RCodba,
+    glm2.7_RCodba, glm2.8_RCodba, glm2.9_RCodba,
     glm3.1_RCodba, glm3.2_RCodba, glm3.3_RCodba, glm3.4_RCodba, glm3.5_RCodba, glm3.6_RCodba,
-    glm3.7_RCodba, glm3.8_RCodba, glm3.9_RCodba, glm3.10_RCodba,
+    glm3.7_RCodba, glm3.8_RCodba, glm3.9_RCodba,
     glm4.1_RCodba, glm4.2_RCodba, glm4.3_RCodba, glm4.4_RCodba, glm4.5_RCodba, glm4.6_RCodba,
-    glm4.7_RCodba, glm4.8_RCodba, glm4.9_RCodba, glm4.10_RCodba, glm4.11_RCodba, glm4.12_RCodba,
-    glm4.13_RCodba) %>%
+    glm4.7_RCodba) %>%
   arrange(BIC)
 
 # ---------- AICc ----------
 AICc(glmfull_RCodba, glm0_RCodba,
-     glm1.1_RCodba, glm1.2_RCodba, glm1.3_RCodba, glm1.4_RCodba, glm1.5_RCodba, glm1.6_RCodba,
-     glm2.1_RCodba, glm2.2_RCodba, glm2.3_RCodba, glm2.4_RCodba, glm2.5_RCodba, glm2.6_RCodba, glm2.7_RCodba,
+     glm1.1_RCodba, glm1.2_RCodba, glm1.3_RCodba, glm1.4_RCodba, glm1.5_RCodba,
+     glm2.1_RCodba, glm2.2_RCodba, glm2.3_RCodba, glm2.4_RCodba, glm2.5_RCodba, glm2.6_RCodba,
+     glm2.7_RCodba, glm2.8_RCodba, glm2.9_RCodba,
      glm3.1_RCodba, glm3.2_RCodba, glm3.3_RCodba, glm3.4_RCodba, glm3.5_RCodba, glm3.6_RCodba,
-     glm3.7_RCodba, glm3.8_RCodba, glm3.9_RCodba, glm3.10_RCodba,
+     glm3.7_RCodba, glm3.8_RCodba, glm3.9_RCodba,
      glm4.1_RCodba, glm4.2_RCodba, glm4.3_RCodba, glm4.4_RCodba, glm4.5_RCodba, glm4.6_RCodba,
-     glm4.7_RCodba, glm4.8_RCodba, glm4.9_RCodba, glm4.10_RCodba, glm4.11_RCodba, glm4.12_RCodba,
-     glm4.13_RCodba) %>%
+     glm4.7_RCodba) %>%
   arrange(AICc)
 
 
@@ -181,41 +175,44 @@ AICc(glmfull_RCodba, glm0_RCodba,
 anova(glm0_RCodba, glm1.1_RCodba, test = "Chisq") # + Mean RL
 anova(glm0_RCodba, glm1.2_RCodba, test = "Chisq") # + Sex 
 anova(glm0_RCodba, glm1.3_RCodba, test = "Chisq") # + Age 
-anova(glm0_RCodba, glm1.4_RCodba, test = "Chisq") # + Status
-anova(glm0_RCodba, glm1.5_RCodba, test = "Chisq") # + Nb_Ind
+anova(glm0_RCodba, glm1.4_RCodba, test = "Chisq") # + Group_size
+anova(glm0_RCodba, glm1.5_RCodba, test = "Chisq") # + Stimulus_type
+
 
 # ---------- From Mean RL ----------
 anova(glm1.1_RCodba, glm2.1_RCodba, test = "Chisq") # + Sex
-anova(glm1.1_RCodba, glm2.4_RCodba, test = "Chisq") # * Sex
-anova(glm1.1_RCodba, glm2.6_RCodba, test = "Chisq") # + Nb_Ind
+anova(glm1.1_RCodba, glm2.3_RCodba, test = "Chisq") # * Sex
+anova(glm1.1_RCodba, glm2.5_RCodba, test = "Chisq") # + Group_size
+anova(glm1.1_RCodba, glm2.7_RCodba, test = "Chisq") # + Stimulus_type
 
 # ---------- From Sex ----------
-anova(glm1.2_RCodba, glm2.5_RCodba, test = "Chisq") # + Nb_Ind 
+anova(glm1.2_RCodba, glm2.4_RCodba, test = "Chisq") # + Group_size 
+anova(glm1.2_RCodba, glm2.8_RCodba, test = "Chisq") # + Stimulus_type
 anova(glm1.2_RCodba, glm2.1_RCodba, test = "Chisq") # + Mean RL
-anova(glm1.2_RCodba, glm2.4_RCodba, test = "Chisq") # * Mean RL
+anova(glm1.2_RCodba, glm2.3_RCodba, test = "Chisq") # * Mean RL
 
-# ---------- From Nb_Ind ----------
-anova(glm1.5_RCodba, glm2.5_RCodba, test = "Chisq") # + Sex
-anova(glm1.5_RCodba, glm2.7_RCodba, test = "Chisq") # * Sex 
-anova(glm1.5_RCodba, glm2.6_RCodba, test = "Chisq") # + Mean RL
+# ---------- From Group_size ----------
+anova(glm1.4_RCodba, glm2.4_RCodba, test = "Chisq") # + Sex
+anova(glm1.4_RCodba, glm2.9_RCodba, test = "Chisq") # + Stimulus_type 
+anova(glm1.4_RCodba, glm2.5_RCodba, test = "Chisq") # + Mean RL
 
 # ---------- From Mean RL + Sex ----------
-anova(glm2.1_RCodba, glm3.1_RCodba, test = "Chisq") # + Nb_Ind
-anova(glm2.1_RCodba, glm3.2_RCodba, test = "Chisq") # + Nb_Ind * Sex
-anova(glm2.1_RCodba, glm3.3_RCodba, test = "Chisq") # + PB_Type_FU
-anova(glm2.1_RCodba, glm3.8_RCodba, test = "Chisq") # + PB_Type_FU * Sex
+anova(glm2.1_RCodba, glm3.1_RCodba, test = "Chisq") # + Group_size
+anova(glm2.1_RCodba, glm3.2_RCodba, test = "Chisq") # + Group_size * Sex
+anova(glm2.1_RCodba, glm3.3_RCodba, test = "Chisq") # + Stimulus_type
+anova(glm2.1_RCodba, glm3.6_RCodba, test = "Chisq") # + Stimulus_type * Sex
 anova(glm2.1_RCodba, glm3.4_RCodba, test = "Chisq") # + Age
 anova(glm2.1_RCodba, glm3.5_RCodba, test = "Chisq") # + Age * Sex
-anova(glm2.1_RCodba, glm3.6_RCodba, test = "Chisq") # + Status
-anova(glm2.1_RCodba, glm3.7_RCodba, test = "Chisq") # + Status * Sex
 
 # ---------- From Mean RL * Sex ----------
-anova(glm2.4_RCodba, glm3.10_RCodba, test = "Chisq") # + Nb_Ind
+anova(glm2.3_RCodba, glm3.8_RCodba, test = "Chisq") # + Group_size
+anova(glm2.3_RCodba, glm3.9_RCodba, test = "Chisq") # + Stimulus_type
+
 
 # ---------- Best compromise among the shortlisted models ----------
-AIC(glm3.1_RCodba, glm2.1_RCodba, glm3.2_RCodba, glm2.4_RCodba) %>% arrange(AIC)
-BIC(glm3.1_RCodba, glm2.1_RCodba, glm3.2_RCodba, glm2.4_RCodba) %>% arrange(BIC)
-AICc(glm3.1_RCodba, glm2.1_RCodba, glm3.2_RCodba, glm2.4_RCodba) %>% arrange(AICc)
+AIC(glm1.4_RCodba, glm2.1_RCodba, glm2.3_RCodba, glm2.5_RCodba, glm3.1_RCodba) %>% arrange(AIC)
+BIC(glm1.4_RCodba, glm2.1_RCodba, glm2.3_RCodba, glm2.5_RCodba, glm3.1_RCodba) %>% arrange(BIC)
+AICc(glm1.4_RCodba, glm2.1_RCodba, glm2.3_RCodba, glm2.5_RCodba, glm3.1_RCodba) %>% arrange(AICc)
 
 
 # =====================================================================
@@ -227,7 +224,7 @@ summary(glm2.1_RCodba)
 # =====================================================================
 # 7. DESCRIPTIVE STATISTICS BY SEX (Table S2)
 # =====================================================================
-ODBA_PB %>%
+data_ODBA %>%
   group_by(Sex) %>%
   summarise(mean = mean(relative_ODBA_change),
             sd = sd(relative_ODBA_change),
@@ -236,6 +233,33 @@ ODBA_PB %>%
             min = min(relative_ODBA_change),
             max = max(relative_ODBA_change))
 
+# =====================================================================
+# 8. FIGURE 2A
+# =====================================================================
+data_ODBA %>% 
+  ggplot(aes(x=Mean_RL, y = relative_ODBA_change, color = Sex)) +
+  # Put in grey area where y < 0
+  #annotate("rect", xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = 0,
+  #         fill = "grey20", alpha = 0.2)+
+  geom_point(size = 2.5) +
+  geom_smooth(method = "glm",
+              method.args = list(family = gaussian(link = "identity")),
+              se = TRUE,
+              aes(group = 1),
+              color = "grey40") +
+  theme_bw() +
+  scale_color_manual(values = c("Female"="#CC79A7", "Male"="#56B4E9")) + # from Okabe–Ito palette
+  labs(y="ODBA (z-score)",
+       x="Mean received level (dB re 1 µPa)",
+       caption="n = 40 trials; 23 individuals") +
+  theme(
+    plot.title = element_text(face = "bold"),
+    plot.subtitle = element_text(color = "gray50"),
+    axis.title = element_text(face = "bold"),
+    #axis.text = element_text(size=12),
+    legend.title = element_text(face = "bold"),
+    #legend.text = element_text(size=11)) +
+    geom_hline(yintercept = 0, color = "red", linetype = "dashed"))
 
 
 
