@@ -30,7 +30,7 @@ R scripts are in the `Scripts/` folder:
 
 | Script | Purpose | Main output in the article |
 |---|---|---|
-| `01_response_direction.R` | Response direction (toward/away): binomial GLM `SL * Sex * Stimulus type`; Tukey post hoc tests | Fig. 1, Table 2, Tables S1 |
+| `01_response_direction.R` | Response direction (toward/away): binomial GLM `SL * Sex * Stimulus type`; Tukey post hoc tests | Fig. 1, Table 2, Table S1 |
 | `02_relative_ODBA_change.R` | Relative change in ODBA: Gaussian GLM `Mean RL + Sex`; RL difference between SL categories (Student's t-test) | Table 2, Fig. 2A |
 | `03_response_duration.R` | Response duration: negative binomial GLM `Mean RL + Group size + Stimulus type` | Table 2, Fig. 2B |
 | `04_direction_vs_`<br>`ODBA_and_duration.R` | Welch t-test and Fisher-Pitman permutation test: response direction vs. ODBA change / response duration | Results, last section |
