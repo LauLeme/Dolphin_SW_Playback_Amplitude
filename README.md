@@ -42,7 +42,7 @@ You will also find all the figures presented in `Output/Figures`.
 
 * Models were compared with AIC, AICc and BIC and with likelihood-ratio tests (`stats`, `MuMIn`). The retained models and reference levels are listed in the header of each script.
 * Binomial and Gaussian GLMs: `stats::glm`. Negative binomial GLM: `MASS::glm.nb`.
-* Estimated marginal means, Tukey-adjusted pairwise comparisons and Holm-adjusted comparisons to chance: `emmeans`.
+* Estimated marginal means, Tukey-adjusted pairwise comparisons: `emmeans`.
 * Fisher-Pitman permutation test: `coin`.
 * Residual diagnostics: `car`.
 * Significance threshold: α = 0.05.
